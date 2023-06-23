@@ -21,7 +21,7 @@ class handler(BaseHTTPRequestHandler):
         cursor = conn.cursor()
 )
         
-        query = "SELECT timestamp, validateur, denom, amount FROM rewards"
+        query = "SELECT timestamp, validateur, denom, amount FROM rewards;"
         cursor.execute(query)
         rows = cursor.fetchall()
         
