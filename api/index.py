@@ -57,8 +57,8 @@ class handler(BaseHTTPRequestHandler):
         cursor.close()
         conn.close()
         
-        #json_data = json.dumps(data)
-        json_data = print(data)
+        json_data = json.dumps(data)
+        #json_data = print(data)
         self.send_response(200)
         self.send_header('Content-type','text/plain')
         self.end_headers()
