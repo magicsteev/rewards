@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
         )
         # Création d'un curseur pour exécuter les requêtes SQL
         cursor = conn.cursor()
-        query = "SELECT timestamp, validateur, denom, amount FROM rewards"
+        query = "SELECT timestamp, validator_name, denom, amount FROM rewards"
         cursor.execute(query)
         rows = cursor.fetchall()
         data = {
@@ -31,7 +31,7 @@ class handler(BaseHTTPRequestHandler):
         label_data = {}
 
         for row in rows:
-            timestamp, validateur, denom, amount = row
+            timestamp, validator_name, denom, amount = row
 
             # Ajouter le label si ce n'est pas déjà présent dans le dictionnaire
             if timestamp not in label_data:
