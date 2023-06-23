@@ -60,12 +60,12 @@ class handler(BaseHTTPRequestHandler):
         json_data = json.dumps(data)
         #json_data = print(data)
         self.send_response(200)
+        self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.send_header('Content-type','text/plain')
         self.end_headers()
         self.wfile.write(json_data.encode('utf-8'))
+         self.wfile.close()
         return
 
 
