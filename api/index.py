@@ -33,7 +33,7 @@ class handler(BaseHTTPRequestHandler):
 
         for row in rows:
             timestamp, validator_name, denom, amount = row
-
+            timestamp=timestamp.isoformat()
             # Ajouter le label si ce n'est pas déjà présent dans le dictionnaire
             if timestamp not in label_data:
                 label_data[timestamp] = {
@@ -57,7 +57,7 @@ class handler(BaseHTTPRequestHandler):
         cursor.close()
         conn.close()
         
-        json_data = json.dumps(data, default=json_serial)
+        json_data = json.dumps(data)
         self.send_response(200)
         self.send_header('Content-type','text/plain')
         self.end_headers()
@@ -65,9 +65,3 @@ class handler(BaseHTTPRequestHandler):
         return
 
 
-    def json_serial(obj):
-        """JSON serializer for objects not serializable by default json code"""
-
-        if isinstance(obj, (datetime, date)):
-            return obj.isoformat()
-        raise TypeError ("Type %s not serializable" % type(obj))
