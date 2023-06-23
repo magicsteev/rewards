@@ -56,9 +56,9 @@ class handler(BaseHTTPRequestHandler):
         cursor.close()
         conn.close()
         
-        json_data = json.dumps(data)
+        #json_data = json.dumps(data)
         self.send_response(200)
         self.send_header('Content-type','text/plain')
         self.end_headers()
-        self.wfile.write(json_data.encode('utf-8'))
+        self.wfile.write(data.encode('utf-8'))
         return
