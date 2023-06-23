@@ -33,7 +33,7 @@ class handler(BaseHTTPRequestHandler):
 
         for row in rows:
             timestamp, validator_name, denom, amount = row
-            timestamp=timestamp.isoformat()
+
             # Ajouter le label si ce n'est pas déjà présent dans le dictionnaire
             if timestamp not in label_data:
                 label_data[timestamp] = {
