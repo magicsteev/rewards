@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler
+import psycopg2
 
 class handler(BaseHTTPRequestHandler):
 
