@@ -45,7 +45,7 @@ class handler(BaseHTTPRequestHandler):
                 }
 
             # Ajouter les données dans le dictionnaire correspondant au label
-            label_data[timestamp]["data"].append(amount)
+            label_data[timestamp]["data"].append(int(amount))
 
             # Ajouter le label s'il n'est pas déjà présent dans la liste des labels
             if timestamp not in data["labels"]:
