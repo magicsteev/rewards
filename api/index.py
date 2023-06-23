@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 import psycopg2
 import json
 
@@ -56,9 +57,17 @@ class handler(BaseHTTPRequestHandler):
         cursor.close()
         conn.close()
         
-        #json_data = json.dumps(data)
+        json_data = json.dumps(data, default=json_serial)
         self.send_response(200)
         self.send_header('Content-type','text/plain')
         self.end_headers()
         self.wfile.write(denom.encode('utf-8'))
         return
+
+
+    def json_serial(obj):
+        """JSON serializer for objects not serializable by default json code"""
+
+        if isinstance(obj, (datetime, date)):
+            return obj.isoformat()
+        raise TypeError ("Type %s not serializable" % type(obj))
