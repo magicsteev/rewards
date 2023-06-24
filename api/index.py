@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
         )
         # Création d'un curseur pour exécuter les requêtes SQL
         cursor = conn.cursor()
-        query = "SELECT TO_CHAR(timestamp, 'YYYY-MM-DD HH24:MI:SS') AS formatted_timestamp, validator_name, denom, ROUND(amount, 0) AS amount FROM rewards"
+        query = "SELECT TO_CHAR(timestamp, 'YYYY-MM-DD HH24:MI:SS') AS formatted_timestamp, validator_name, denom, ROUND(amount, 0) AS amount FROM rewards where denom='uatom'"
         cursor.execute(query)
         rows = cursor.fetchall()
         data = {
